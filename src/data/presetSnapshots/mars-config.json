@@ -1,0 +1,119 @@
+{
+  "gnc": {
+    "attitude_controller": "ReactionWheelPD",
+    "navigation_filter": "EKF",
+    "pointing_mode": "Nadir",
+    "position_accuracy_req_m": 1000,
+    "velocity_accuracy_req_mps": 1
+  },
+  "mission": {
+    "name": "Mars Orbiter",
+    "objective": "Orbit"
+  },
+  "optimization": {
+    "departure_body": "Earth",
+    "departure_epoch": "2026-11-12T12:00:00 UTC",
+    "departure_window_days": 60,
+    "dv_max_ms": 4000,
+    "dv_min_ms": 2500,
+    "force_model": {
+      "atol": 1e-12,
+      "bodies": [
+        { "name": "Mars", "role": "CentralWhenInSoi" },
+        { "name": "Sun", "role": "AlwaysThirdBody" },
+        { "name": "Earth", "role": "CentralWhenInSoi" }
+      ],
+      "integrator": "Dopri5",
+      "rtol": 1e-9
+    },
+    "ga": {
+      "crossover_rate": 0.8,
+      "elitism_count": 2,
+      "generations": 40,
+      "mutation_rate": 0.1,
+      "population_size": 100
+    },
+    "max_coast_days": 400,
+    "method": "GA",
+    "mga": {
+      "flyby_bodies": [],
+      "leg_tof_days": [[30, 800]]
+    },
+    "objective": "MinDeltaV",
+    "target_body": "Mars"
+  },
+  "simulation": {
+    "atol": 1e-9,
+    "dt_meas_s": 1,
+    "dt_truth_s": 1,
+    "integrator": "DormandPrince45",
+    "monte_carlo_runs": 1,
+    "output_dir": "./output",
+    "rtol": 1e-9
+  },
+  "spacecraft": {
+    "bus_dims_m": [2, 1, 1],
+    "dry_mass_kg": 230,
+    "launch_vehicle": "Falcon9",
+    "hardware": [
+      { "area_m2": 2, "height_m": 2, "normal": [0, 1, 0], "position_m": [1.484, 0.5, -0.003], "type": "SolarPanel", "width_m": 1 },
+      { "boresight": [-1, 0, 0], "fov_deg": 20, "position_m": [-1.02, 0.016, -0.165], "type": "OpNavCamera" },
+      { "beamwidth_deg": 8, "boresight": [0, 0, -1], "position_m": [0.006, 0.019, -0.52], "type": "CommAntenna" },
+      { "beamwidth_deg": 8, "boresight": [0, 0, 1], "position_m": [0, 0, 0.52], "type": "CommAntenna" },
+      { "direction": [0, -1, 0], "mass_kg": 0.201, "position_m": [0.355, 0.5, 0.376], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 1, 0], "mass_kg": 0.201, "position_m": [0.355, -0.5, 0.376], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 1, 0], "mass_kg": 0.201, "position_m": [-0.77, -0.5, -0.303], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, -1, 0], "mass_kg": 0.201, "position_m": [0.321, 0.5, -0.327], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, 1], "mass_kg": 0.201, "position_m": [-0.803, -0.323, -0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, -1, 0], "mass_kg": 0.201, "position_m": [-0.832, 0.5, 0.33], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, -1, 0], "mass_kg": 0.201, "position_m": [-0.825, 0.5, -0.358], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [1, 0, 0], "mass_kg": 0.201, "position_m": [-0.5, 0.354, 0.395], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [1, 0, 0], "mass_kg": 0.201, "position_m": [-1, -0.342, 0.336], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [1, 0, 0], "mass_kg": 0.201, "position_m": [-1, 0.296, -0.337], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [1, 0, 0], "mass_kg": 0.201, "position_m": [-1, -0.339, -0.333], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, -1], "mass_kg": 0.201, "position_m": [0.315, -0.28, 0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, -1], "mass_kg": 0.201, "position_m": [0.343, 0.285, 0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, -1], "mass_kg": 0.201, "position_m": [-0.815, 0.372, 0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, -1], "mass_kg": 0.201, "position_m": [-0.808, -0.378, 0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 1, 0], "mass_kg": 0.201, "position_m": [0.306, -0.5, -0.266], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 1, 0], "mass_kg": 0.201, "position_m": [-0.809, -0.5, 0.346], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, 1], "mass_kg": 0.201, "position_m": [-0.824, 0.281, -0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, 1], "mass_kg": 0.201, "position_m": [0.302, 0.268, -0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [0, 0, 1], "mass_kg": 0.201, "position_m": [0.285, -0.285, -0.5], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [-1, 0, 0], "mass_kg": 0.201, "position_m": [0.5, -0.243, 0.279], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [-1, 0, 0], "mass_kg": 0.201, "position_m": [0.5, 0.282, 0.209], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [-1, 0, 0], "mass_kg": 0.201, "position_m": [0.5, 0.25, -0.309], "thrust_n": 1, "type": "RcsThruster" },
+      { "direction": [-1, 0, 0], "mass_kg": 0.201, "position_m": [0.5, -0.263, -0.267], "thrust_n": 1, "type": "RcsThruster" },
+      { "count": 1, "inertia_kgm2": 0.24, "mass_kg": 16, "max_speed_rads": 628.3, "max_torque_nm": 1, "model": "RW-XLarge", "type": "ReactionWheelCluster" },
+      { "boresight": [-1, 0, 0], "fov_deg": 10, "position_m": [-1.02, -0.186, 0.008], "type": "StarTracker" },
+      { "boresight": [-1, 0, 0], "fov_deg": 15, "position_m": [-1.02, -0.002, 0.242], "type": "Lidar" }
+    ],
+    "inertia_diag_kgm2": [100, 100, 100],
+    "mass_kg": 500,
+    "propellant_mass_kg": 270,
+    "propulsion": {
+      "isp_s": 320,
+      "thrust_n": 100,
+      "type": "Biprop"
+    },
+    "srp_model": "NPlate"
+  },
+  "target_body": {
+    "ephemeris": "Anise",
+    "name": "Mars"
+  },
+  "trajectory": {
+    "capture": {
+      "target_orbit_radius_m": 3790000,
+      "capture_eccentricity": 0.9
+    },
+    "cruise": {
+      "tof_days_max": 350,
+      "tof_days_min": 240
+    },
+    "departure_body": "Earth",
+    "departure_epoch": "2026-11-12T12:00:00 UTC",
+    "phases": ["Cruise"],
+    "solver": "GridSearch"
+  }
+}

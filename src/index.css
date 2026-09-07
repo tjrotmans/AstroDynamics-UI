@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Geist Variable', sans-serif;
+    /* Observatory identity (landing page + future memo/study views) -- see
+       index.html for the Google Fonts <link>. Workspace typography stays
+       Geist (--font-sans/--font-heading above), untouched. */
+    --font-serif: 'Newsreader', Georgia, serif;
+    --font-mono: 'Red Hat Mono', Consolas, monospace;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+    /* Tell the browser itself we're dark: native controls (the datetime
+       picker popup/icon, select scrollers, autofill) otherwise render in
+       light mode against the dark canvas. */
+    color-scheme: dark;
+    /* "Observatory" identity (2026-07-27): the cyan-on-near-black look was
+       the same palette every AI-generated dark UI reaches for. This swaps
+       the accent to a warm gold/orange -- the color of the living-sky
+       landing page's Sun and the mission memo's section bands -- against a
+       slightly cooler, deeper black so the accent has room to read as warm. */
+    --background: #05070d;
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: #ffc861;
+    --primary-foreground: #201503;
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: #ffc861;
+    /* Categorical palette: chart-1 follows the new brand gold; chart-2..5
+       unchanged. Plotly panels reference these hexes via lib/plot.ts's
+       CHART_COLORS (migrated 2026-08-05, kept in sync with this block by
+       hand since Plotly can't read CSS variables). */
+    --chart-1: #ffc861;
+    --chart-2: #ffa94d;
+    --chart-3: #b197fc;
+    --chart-4: #63e6be;
+    --chart-5: #ff8787;
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+
+  /* Default Windows scrollbars render as bright chrome slabs against the
+     dark canvas -- the two independently-scrolling panes (sidebar +
+     workspace) made that very visible. Thin + muted in both engines. */
+  .dark * {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.32 0 0) transparent;
+  }
+  .dark ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: oklch(0.32 0 0);
+    border-radius: 5px;
+    border: 2px solid var(--background);
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* UX audit (2026-08-04): "Design Trajectory"/"Continue to GNC sizing"
+     used to cut instantly from the landing sky's dark cinematic scene to
+     the workspace with no transition at all -- a full visual-register
+     change (dark/ambient -> light/dense for Study, or vice versa for GNC)
+     with nothing to sell it as deliberate. App.tsx applies this class for
+     ~450ms right after leaving the sky, on whichever workspace just became
+     visible, respecting prefers-reduced-motion below. */
+  @keyframes workspace-enter {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .workspace-enter {
+    animation: workspace-enter 450ms ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .workspace-enter {
+      animation: none;
+    }
+  }
+}
